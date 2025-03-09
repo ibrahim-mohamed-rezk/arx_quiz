@@ -20,12 +20,13 @@ const Questoins = ({
 }) => {
   const [questionsData, setQuestionsData] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
-  const [customerId, setCustomerId] = useState<string>("");
+  const [customerId, setCustomerId] = useState<string | null>(null);
   const [disabled, setDisabled] = useState<boolean>(true);
 
   useEffect(() => {
-    setCustomerId(localStorage.getItem("id") || "");
-  }, []);
+    
+    setCustomerId(localStorage.getItem("id"));
+  }, [customerId, disabled]);
 
   //   get questionsData from api
   useEffect(() => {
