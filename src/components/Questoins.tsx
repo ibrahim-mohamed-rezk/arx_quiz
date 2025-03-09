@@ -13,7 +13,11 @@ interface Question {
   };
 }
 
-const Questoins = () => {
+const Questoins = ({
+  setCurrentContent,
+}: {
+  setCurrentContent: (content: string) => void;
+}) => {
   const [questionsData, setQuestionsData] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [customerId, setCustomerId] = useState<string>("");
@@ -53,22 +57,24 @@ const Questoins = () => {
     }
   }, [answers, questionsData]);
 
-  console.log(
-    answers.length - 1 === questionsData.length &&
-      answers.every((answer) => answer !== null)
-  );
+  //   console.log(
+  //     answers.length - 1 === questionsData.length &&
+  //       answers.every((answer) => answer !== null)
+  //   );
 
   //   submit answers
   const handleAnswers = async () => {
     try {
       await postData(`submit-answers/${customerId}`, { answers: answers });
       localStorage.removeItem("id");
+      setCurrentContent("splash");
+      setAnswers([]);
     } catch (error) {
       console.error(error);
     }
   };
 
-  console.log(answers);
+  //   console.log(answers);
 
   return (
     <div className="flex flex-col items-center justify-start">

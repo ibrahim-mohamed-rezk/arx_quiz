@@ -7,6 +7,7 @@ import { postData } from "@/libs/axios/backend";
 
 const Form = () => {
   const [currentContent, setCurrentContent] = useState<string>("splash");
+  const [customerId, setCustomerId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -14,10 +15,16 @@ const Form = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
+    setCustomerId(localStorage.getItem("id"));
+    console.log(customerId);
     setTimeout(() => {
-      setCurrentContent("questions");
-    }, 1000);
-  }, []);
+      if (customerId !== null) {
+        setCurrentContent("questions");
+      } else {
+        setCurrentContent("form");
+      }
+    }, 2000);
+  }, [customerId, currentContent]);
 
   //   rigister
   const handleRegister = async () => {
@@ -267,7 +274,7 @@ const Form = () => {
               : "opacity-0 absolute z-0"
           }`}
         >
-          <Questoins />
+          <Questoins setCurrentContent={setCurrentContent} />
         </div>
       </div>
 
