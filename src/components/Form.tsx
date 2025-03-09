@@ -16,6 +16,10 @@ const Form = () => {
   const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
+    setCustomerId(localStorage.getItem("id"));
+  }, [customerId, currentContent]);
+
+  useEffect(() => {
     setId(localStorage.getItem("id"));
     setTimeout(() => {
       if (customerId !== null) {
@@ -33,6 +37,7 @@ const Form = () => {
       setError(false);
       setCurrentContent("questions");
       localStorage.setItem("id", response.customer.id);
+      setId(response.customer.id);
     } catch (error) {
       console.error(error);
       setError(true);
