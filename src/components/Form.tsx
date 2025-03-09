@@ -13,10 +13,10 @@ const Form = () => {
     phone: "",
   });
   const [error, setError] = useState<boolean>(false);
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
-    setCustomerId(localStorage.getItem("id"));
-    console.log(customerId);
+    setId(localStorage.getItem("id"));
     setTimeout(() => {
       if (customerId !== null) {
         setCurrentContent("questions");
@@ -274,7 +274,7 @@ const Form = () => {
               : "opacity-0 absolute z-0"
           }`}
         >
-          <Questoins setCurrentContent={setCurrentContent} />
+          <Questoins id={id} setCurrentContent={setCurrentContent} />
         </div>
       </div>
 

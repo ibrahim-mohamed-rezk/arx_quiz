@@ -15,18 +15,14 @@ interface Question {
 
 const Questoins = ({
   setCurrentContent,
+  id,
 }: {
   setCurrentContent: (content: string) => void;
+  id: string | null;
 }) => {
   const [questionsData, setQuestionsData] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
-  const [customerId, setCustomerId] = useState<string | null>(null);
   const [disabled, setDisabled] = useState<boolean>(true);
-
-  useEffect(() => {
-    
-    setCustomerId(localStorage.getItem("id"));
-  }, [customerId, disabled]);
 
   //   get questionsData from api
   useEffect(() => {
@@ -66,7 +62,7 @@ const Questoins = ({
   //   submit answers
   const handleAnswers = async () => {
     try {
-      await postData(`submit-answers/${customerId}`, { answers: answers });
+      await postData(`submit-answers/${id}`, { answers: answers });
       localStorage.removeItem("id");
       setCurrentContent("splash");
       setAnswers([]);
