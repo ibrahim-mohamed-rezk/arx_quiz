@@ -82,7 +82,7 @@ const Table = () => {
           placeholder="Search by name"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-[30%] p-2 border border-gray-600 rounded-2xl bg-gray-800 text-white focus:outline-none"
+          className="w-[30%] p-2 border border-gray-600 rounded-2xl bg-[#2A2A2A] text-white focus:outline-none"
         />
         <button
           onClick={handleGetWinner}
@@ -93,9 +93,9 @@ const Table = () => {
       </div>
 
       {/* table  */}
-      <table className="w-[90%] mx-auto mt-[50px] rounded-2xl overflow-hidden bg-gray-800 border-collapse text-center">
+      <table className="w-[90%] mx-auto mt-[50px] rounded-2xl overflow-hidden bg-[#2A2A2A] border-collapse text-center">
         <thead>
-          <tr className="bg-gray-700">
+          <tr className="bg-[#2A2A2A]">
             <th className="py-2 px-4 border border-gray-600 text-white">ID</th>
             <th className="py-2 px-4 border border-gray-600 text-white">
               Name
@@ -113,7 +113,7 @@ const Table = () => {
         </thead>
         <tbody>
           {users?.map((user: Winner) => (
-            <tr key={user.id} className="hover:bg-gray-700">
+            <tr key={user.id} className="hover:bg-[##2A2A2A]">
               <td className="py-2 px-4 border border-gray-600 text-gray-300">
                 {user.id}
               </td>
@@ -146,13 +146,13 @@ const Table = () => {
           onClick={() => setWinner(null)}
         >
           <div
-            className="bg-black rounded-full p-6 shadow-lg max-w-md w-[400px] h-[400px] flex items-center justify-center flex-col"
+            className="bg-gradient-to-br from-black to-gray-900 rounded-3xl p-8 shadow-2xl max-w-md w-[420px] h-[420px] flex items-center justify-center flex-col border border-yellow-600/30"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-white">Winner</h2>
-              {/* <button
-                className="text-gray-400 hover:text-white"
+            <div className="flex justify-between items-center mb-6 w-full">
+              <h2 className="text-2xl font-bold text-yellow-500">🏆 Winner!</h2>
+              <button
+                className="text-gray-400 hover:text-yellow-500 transition-colors"
                 onClick={() => setWinner(null)}
               >
                 <svg
@@ -168,20 +168,20 @@ const Table = () => {
                     d="M6 18L18 6M6 6l12 12"
                   ></path>
                 </svg>
-              </button> */}
+              </button>
             </div>
-            <div className="mb-4">
-              <p className="text-gray-300 mb-2">
-                Name:{" "}
+            <div className="mb-6 w-full bg-black/40 p-5 rounded-xl border border-[##2A2A2A]">
+              <p className="text-gray-300 mb-3 flex justify-between">
+                <span>Name:</span>
                 <span className="font-semibold text-white">{winner.name}</span>
               </p>
-              <p className="text-gray-300 mb-2">
-                Phone:{" "}
+              <p className="text-gray-300 mb-3 flex justify-between">
+                <span>Phone:</span>
                 <span className="font-semibold text-white">{winner.phone}</span>
               </p>
-              <p className="text-gray-300">
-                Correct Answers:{" "}
-                <span className="font-semibold text-white">
+              <p className="text-gray-300 flex justify-between">
+                <span>Correct Answers:</span>
+                <span className="font-semibold text-yellow-400">
                   {winner.correct_answers || 0}
                 </span>
               </p>
