@@ -93,7 +93,7 @@ const Table = () => {
       </div>
 
       {/* table  */}
-      <table className="w-[90%] mx-auto mt-[50px] rounded-2xl overflow-hidden bg-[#2A2A2A] border-collapse text-center">
+      <table className="w-[90%] mx-auto mt-[50px] relative z-[100] rounded-2xl overflow-hidden bg-[#2A2A2A] border-collapse text-center">
         <thead>
           <tr className="bg-[#2A2A2A]">
             <th className="py-2 px-4 border border-gray-600 text-white">ID</th>
