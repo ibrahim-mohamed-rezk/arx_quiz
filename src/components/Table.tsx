@@ -86,7 +86,7 @@ const Table = () => {
         />
         <button
           onClick={handleGetWinner}
-          className="bg-[#e1a12c] text-[18px] font-bold w-[30%] px-4 py-2 rounded-2xl text-white"
+          className="bg-[#e1a12c] cursor-pointer text-[18px] font-bold w-[30%] px-4 py-2 rounded-2xl text-white"
         >
           اختيار فائز
         </button>
