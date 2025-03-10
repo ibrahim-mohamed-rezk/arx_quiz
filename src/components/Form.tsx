@@ -22,7 +22,9 @@ const Form = () => {
   useEffect(() => {
     setId(localStorage.getItem("id"));
     setTimeout(() => {
-      if (customerId !== null) {
+      if (currentContent === "message") {
+        return;
+      } else if (customerId !== null) {
         setCurrentContent("questions");
       } else {
         setCurrentContent("form");
@@ -190,7 +192,11 @@ const Form = () => {
                       />
                     </svg>
                   </a>
-                  <a target="_blank" href="https://www.instagram.com/arxdevelopment/" className="w-[36.75px] h-[36.75px] p-[11.69px] bg-[#333333] rounded-[18.38px] border-[0.56px] border-[#868686] flex justify-start items-center gap-[5.57px]">
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/arxdevelopment/"
+                    className="w-[36.75px] h-[36.75px] p-[11.69px] bg-[#333333] rounded-[18.38px] border-[0.56px] border-[#868686] flex justify-start items-center gap-[5.57px]"
+                  >
                     <svg
                       width="14"
                       height="15"
@@ -273,10 +279,32 @@ const Form = () => {
           className={`transition-all duration-[1.5s] ease-in-out relative ${
             currentContent === "questions"
               ? "opacity-100 z-[100]"
-              : "opacity-0 absolute z-0"
+              : "opacity-0 absolute z-0 hidden"
           }`}
         >
           <Questoins id={id} setCurrentContent={setCurrentContent} />
+        </div>
+
+        {/* Message */}
+        <div
+          className={`transition-all duration-[1.5s] ease-in-out relative ${
+            currentContent === "message"
+              ? "opacity-100 z-[100]"
+              : "opacity-0 absolute z-0"
+          }`}
+        >
+          {currentContent === "message" && (
+            <div className="flex flex-col items-center justify-center gap-4 p-6 text-center">
+              <h2 className="text-2xl font-bold text-white">شكرا</h2>
+              <p className="text-lg text-white">سيتم اعلان الفائزين بنهاية الحفل</p>
+              <button 
+                onClick={() => setCurrentContent("form")}
+                className="mt-4 px-6 py-2 bg-[#e1a12c] text-white rounded-md hover:bg-opacity-80 transition-all"
+              >
+                رجوع
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

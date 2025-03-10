@@ -64,7 +64,7 @@ const Questoins = ({
     try {
       await postData(`submit-answers/${id}`, { answers: answers });
       localStorage.removeItem("id");
-      setCurrentContent("splash");
+      setCurrentContent("message");
       setAnswers([]);
     } catch (error) {
       console.error(error);
