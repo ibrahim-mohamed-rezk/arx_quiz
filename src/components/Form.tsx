@@ -296,7 +296,7 @@ const Form = () => {
           {currentContent === "message" && (
             <div className="flex flex-col items-center justify-center gap-4 p-6 text-center">
               <h2 className="text-2xl font-bold text-white">شكرا</h2>
-              <p className="text-lg text-white">سيتم اعلان الفائزين بنهاية الحفل</p>
+              <p className="text-lg text-white">سيتم اعلان الفائزين بنهاية الافطار</p>
               <button 
                 onClick={() => setCurrentContent("form")}
                 className="mt-4 px-6 py-2 bg-[#e1a12c] text-white rounded-md hover:bg-opacity-80 transition-all"
