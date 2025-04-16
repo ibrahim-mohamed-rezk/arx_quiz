@@ -6,7 +6,7 @@ import Questoins from "./Questoins";
 import { postData } from "@/libs/axios/backend";
 
 const Form = () => {
-  const [currentContent, setCurrentContent] = useState<string>("form");
+  const [currentContent, setCurrentContent] = useState<string>("splash");
   const [customerId, setCustomerId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,18 +19,18 @@ const Form = () => {
     setCustomerId(localStorage.getItem("id"));
   }, [customerId, currentContent]);
 
-  // useEffect(() => {
-  //   setId(localStorage.getItem("id"));
-  //   setTimeout(() => {
-  //     if (currentContent === "message") {
-  //       return;
-  //     } else if (customerId !== null) {
-  //       setCurrentContent("questions");
-  //     } else {
-  //       setCurrentContent("form");
-  //     }
-  //   }, 2000);
-  // }, [customerId, currentContent]);
+  useEffect(() => {
+    setId(localStorage.getItem("id"));
+    setTimeout(() => {
+      if (currentContent === "message") {
+        return;
+      } else if (customerId !== null) {
+        setCurrentContent("questions");
+      } else {
+        setCurrentContent("form");
+      }
+    }, 2000);
+  }, [customerId, currentContent]);
 
   //   rigister
   const handleRegister = async () => {
@@ -54,6 +54,8 @@ const Form = () => {
         backgroundImage: "url('/images/bg.png')",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <div
