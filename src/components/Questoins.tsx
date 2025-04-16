@@ -77,10 +77,10 @@ const Questoins = ({
     <div className="flex flex-col items-center justify-start">
       <div className="w-[278px] relative text-center justify-start">
         <span className="text-white text-sm font-bold font-['GE_SS_Unique'] leading-tight">
-          جاوب علي ال 8 اسئلة صح عشان تدخل معانا السحب علي{" "}
+          الحظ مستنيك جاوب علي الاسئله وادخل السحب علي{" "}
         </span>
         <span className="text-[#e1a12c] text-base font-bold font-['GE_SS_Unique'] leading-tight">
-          جوائز ذهبيه
+          سبائك دهب
         </span>
       </div>
       <div className="w-[336px] mt-[20px] h-fit bg-[#3e3e3e]/50 rounded-[30px] backdrop-blur-[6.30px] flex flex-col justify-start items-center p-3 overflow-y-auto">

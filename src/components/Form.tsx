@@ -6,7 +6,7 @@ import Questoins from "./Questoins";
 import { postData } from "@/libs/axios/backend";
 
 const Form = () => {
-  const [currentContent, setCurrentContent] = useState<string>("splash");
+  const [currentContent, setCurrentContent] = useState<string>("form");
   const [customerId, setCustomerId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,18 +19,18 @@ const Form = () => {
     setCustomerId(localStorage.getItem("id"));
   }, [customerId, currentContent]);
 
-  useEffect(() => {
-    setId(localStorage.getItem("id"));
-    setTimeout(() => {
-      if (currentContent === "message") {
-        return;
-      } else if (customerId !== null) {
-        setCurrentContent("questions");
-      } else {
-        setCurrentContent("form");
-      }
-    }, 2000);
-  }, [customerId, currentContent]);
+  // useEffect(() => {
+  //   setId(localStorage.getItem("id"));
+  //   setTimeout(() => {
+  //     if (currentContent === "message") {
+  //       return;
+  //     } else if (customerId !== null) {
+  //       setCurrentContent("questions");
+  //     } else {
+  //       setCurrentContent("form");
+  //     }
+  //   }, 2000);
+  // }, [customerId, currentContent]);
 
   //   rigister
   const handleRegister = async () => {
@@ -50,6 +50,11 @@ const Form = () => {
       className={`w-full ${
         currentContent === "questions" ? "h-auto min-h-screen " : "h-screen  "
       } relative bg-[#2a2a2a] overflow-hidden flex justify-center`}
+      style={{
+        backgroundImage: "url('/images/bg.png')",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
     >
       <div
         className={`flex items-center justify-start flex-col mt-[190px] z-50 ${
@@ -75,14 +80,19 @@ const Form = () => {
           />
           {currentContent === "form" && (
             <div className="w-[278px] relative text-center justify-start text-white text-sm font-bold font-['GE_SS_Unique']">
-              اكمل بياناتك للمشاركه في المسابقه الخاصه بالحفل الرمضاني
+              <span className="text-white text-sm font-bold font-['GE_SS_Unique'] leading-tight">
+                الحظ مستنيك جاوب علي الاسئله وادخل السحب علي{" "}
+              </span>
+              <span className="text-[#e1a12c] text-base font-bold font-['GE_SS_Unique'] leading-tight">
+                سبائك دهب
+              </span>
             </div>
           )}
         </div>
 
         <div className="flex items-center justify-center duration-[1s]">
           {/* ramadan image */}
-          <div
+          {/* <div
             className={`transition-opacity duration-[1s] ${
               currentContent === "splash" ? "opacity-100" : "opacity-0 absolute"
             }`}
@@ -93,7 +103,7 @@ const Form = () => {
               src="/images/ramadan.svg"
               alt="logo"
             />
-          </div>
+          </div> */}
 
           {/* form */}
           <div
@@ -296,8 +306,10 @@ const Form = () => {
           {currentContent === "message" && (
             <div className="flex flex-col items-center justify-center gap-4 p-6 text-center">
               <h2 className="text-2xl font-bold text-white">شكرا</h2>
-              <p className="text-lg text-white">سيتم اعلان الفائزين بنهاية الافطار</p>
-              <button 
+              <p className="text-lg text-white">
+                سيتم اعلان الفائزين بنهاية الافطار
+              </p>
+              <button
                 onClick={() => setCurrentContent("form")}
                 className="mt-4 px-6 py-2 bg-[#e1a12c] text-white rounded-md hover:bg-opacity-80 transition-all"
               >
@@ -309,7 +321,7 @@ const Form = () => {
       </div>
 
       {/* absolute vectors */}
-      <div
+      {/* <div
         className={`absolute top-[-100px] scale-[1.5] left-[-100px] z-0 duration-[1s] origin-top-left ${
           currentContent !== "splash" && "opacity-[.2]"
         } ${
@@ -337,7 +349,7 @@ const Form = () => {
           src="/images/rightVector.svg"
           alt="vector"
         />
-      </div>
+      </div> */}
     </div>
   );
 };
