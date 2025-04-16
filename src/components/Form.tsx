@@ -29,7 +29,7 @@ const Form = () => {
       } else {
         setCurrentContent("form");
       }
-    }, 2000);
+    }, 5000);
   }, [customerId, currentContent]);
 
   //   rigister
@@ -94,18 +94,20 @@ const Form = () => {
 
         <div className="flex items-center justify-center duration-[1s]">
           {/* ramadan image */}
-          {/* <div
-            className={`transition-opacity duration-[1s] ${
+          <div
+            className={`transition-opacity duration-[.1s] ${
               currentContent === "splash" ? "opacity-100" : "opacity-0 absolute"
             }`}
           >
             <Image
-              width={200}
-              height={190}
-              src="/images/ramadan.svg"
+              width={300}
+              height={300}
+              src="/images/final.png"
               alt="logo"
+              className="animate-spin-slow"
+              style={{ animation: "spin 5s linear infinite" }}
             />
-          </div> */}
+          </div>
 
           {/* form */}
           <div
