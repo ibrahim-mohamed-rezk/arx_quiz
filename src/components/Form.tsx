@@ -311,7 +311,7 @@ const Form = () => {
             <div className="flex flex-col items-center justify-center gap-4 p-6 text-center">
               <h2 className="text-2xl font-bold text-white">شكرا</h2>
               <p className="text-lg text-white">
-                سيتم اعلان الفائزين بنهاية الافطار
+                سيتم اعلان الفائزين بنهاية الحفل
               </p>
               <button
                 onClick={() => setCurrentContent("form")}
