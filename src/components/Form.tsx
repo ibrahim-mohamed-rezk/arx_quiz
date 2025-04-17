@@ -312,6 +312,8 @@ const Form = () => {
               <h2 className="text-2xl font-bold text-white">شكرا</h2>
               <p className="text-lg text-white">
                 سيتم اعلان الفائزين بنهاية الحفل
+                <br />
+                مبسوطين انك شاركت معانا 😍
               </p>
               <button
                 onClick={() => setCurrentContent("form")}
