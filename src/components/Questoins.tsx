@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 interface Question {
   id: number;
   question_text: string;
+  type: string;
   options: {
     A: string;
     B: string;
@@ -31,6 +32,7 @@ const Questoins = ({
         const response = await getData("questions");
         const data = await response.questions;
         setQuestionsData(data);
+        console.log(data);
 
         setAnswers(["A"]);
       } catch (error) {
@@ -86,78 +88,124 @@ const Questoins = ({
       <div className="w-[336px] mt-[20px] h-fit bg-[#3e3e3e]/50 rounded-[30px] backdrop-blur-[6.30px] flex flex-col justify-start items-center p-3 overflow-y-auto">
         <div className="w-full max-w-[312px] flex flex-col justify-start items-start gap-4">
           {/* Question Multiple Options */}
-          {questionsData?.map((question, index) => (
-            <div
-              key={question.id}
-              className={`w-full rounded-[20px] p-4 ${
-                answers[question.id] ? "bg-[#2a2a2a]" : "bg-[#e0e0e0]"
-              }`}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div
-                  className={`w-[244px] text-right text-[#2a2a2a] text-xs font-bold font-['GE_SS_Unique'] leading-tight ${
-                    answers[question.id] ? "text-[#fff]" : "text-[#2a2a2a]"
-                  }`}
-                >
-                  {question.question_text}
-                </div>
-                <div className="w-[30px] h-[30px] px-2.5 py-[5px] bg-[#e1a12c]/80 rounded-full flex justify-center items-center">
-                  <div className="text-white text-xs font-bold font-['Inter']">
-                    {index + 1}
+          {questionsData?.map((question, index) => {
+            return question.type === "MCQ" ? (
+              <div
+                key={question.id}
+                className={`w-full rounded-[20px] p-4 ${
+                  answers[question.id] ? "bg-[#2a2a2a]" : "bg-[#e0e0e0]"
+                }`}
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div
+                    className={`w-[244px] text-right text-[#2a2a2a] text-xs font-bold font-['GE_SS_Unique'] leading-tight ${
+                      answers[question.id] ? "text-[#fff]" : "text-[#2a2a2a]"
+                    }`}
+                  >
+                    {question.question_text}
+                  </div>
+                  <div className="w-[30px] h-[30px] px-2.5 py-[5px] bg-[#e1a12c]/80 rounded-full flex justify-center items-center">
+                    <div className="text-white text-xs font-bold font-['Inter']">
+                      {index + 1}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="text-right text-[#2a2a2a] text-xs font-light font-['GE_SS_Unique'] mb-2">
-                : الاجابة
-              </div>
-              <div className="flex flex-col gap-2 items-end">
-                {Object.values(question.options).map((option, idx) => (
-                  <div
-                    onClick={() => {
-                      const key = Object.keys(question.options)[idx];
-                      const newAnswers = [...answers];
-                      newAnswers[question.id] = key;
-                      setAnswers(newAnswers);
-                    }}
-                    key={idx}
-                    className="flex w-full justify-end items-center gap-2"
-                  >
+                <div className="text-right text-[#2a2a2a] text-xs font-light font-['GE_SS_Unique'] mb-2">
+                  : الاجابة
+                </div>
+                <div className="flex flex-col gap-2 items-end">
+                  {Object.values(question.options).map((option, idx) => (
                     <div
-                      className={`${
-                        answers[question.id] ===
-                        Object.keys(question.options)[idx]
-                          ? "text-[#e1a12c]"
-                          : answers[question.id]
-                          ? "text-white"
-                          : "text-[#2a2a2a]"
-                      } text-xs font-bold font-['GE_SS_Unique']`}
+                      onClick={() => {
+                        const key = Object.keys(question.options)[idx];
+                        const newAnswers = [...answers];
+                        newAnswers[question.id] = key;
+                        setAnswers(newAnswers);
+                      }}
+                      key={idx}
+                      className="flex w-full justify-end items-center gap-2"
                     >
-                      {option}
-                    </div>
-                    <div className="w-10 h-10 rounded-full flex justify-center items-center">
                       <div
-                        className={`w-[20px] h-[20px] flex items-center justify-center border-2 rounded-full ${
+                        className={`${
                           answers[question.id] ===
                           Object.keys(question.options)[idx]
-                            ? "border-[#e1a12c]"
-                            : "border-[#5e5b52]"
-                        }`}
+                            ? "text-[#e1a12c]"
+                            : answers[question.id]
+                            ? "text-white"
+                            : "text-[#2a2a2a]"
+                        } text-xs font-bold font-['GE_SS_Unique']`}
                       >
+                        {option}
+                      </div>
+                      <div className="w-10 h-10 rounded-full flex justify-center items-center">
                         <div
-                          className={`w-[10px] h-[10px] rounded-full ${
+                          className={`w-[20px] h-[20px] flex items-center justify-center border-2 rounded-full ${
                             answers[question.id] ===
                             Object.keys(question.options)[idx]
-                              ? "bg-[#e1a12c]"
-                              : ""
+                              ? "border-[#e1a12c]"
+                              : "border-[#5e5b52]"
                           }`}
-                        ></div>
+                        >
+                          <div
+                            className={`w-[10px] h-[10px] rounded-full ${
+                              answers[question.id] ===
+                              Object.keys(question.options)[idx]
+                                ? "bg-[#e1a12c]"
+                                : ""
+                            }`}
+                          ></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ) : (
+              <div
+                key={question.id}
+                className={`w-full rounded-[20px] p-4 ${
+                  answers[question.id] ? "bg-[#2a2a2a]" : "bg-[#e0e0e0]"
+                }`}
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div
+                    className={`w-[244px] text-right text-[#2a2a2a] text-xs font-bold font-['GE_SS_Unique'] leading-tight ${
+                      answers[question.id] ? "text-[#fff]" : "text-[#2a2a2a]"
+                    }`}
+                  >
+                    {question.question_text}
+                  </div>
+                  <div className="w-[30px] h-[30px] px-2.5 py-[5px] bg-[#e1a12c]/80 rounded-full flex justify-center items-center">
+                    <div className="text-white text-xs font-bold font-['Inter']">
+                      {index + 1}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right text-[#2a2a2a] text-xs font-light font-['GE_SS_Unique'] mb-2">
+                  : الاجابة
+                </div>
+                <div className="flex flex-col gap-2 items-end">
+                  <div className="flex w-full justify-end items-center gap-2">
+                    <textarea
+                      className={`w-full p-2 border rounded-md resize-none text-right ${
+                        answers[question.id]
+                          ? "bg-[#3a3a3a] text-white border-[#4a4a4a]"
+                          : "bg-white text-[#2a2a2a] border-[#ccc]"
+                      }`}
+                      rows={3}
+                      placeholder="اكتب اجابتك هنا..."
+                      value={answers[question.id] || ""}
+                      onChange={(e) => {
+                        const newAnswers = [...answers];
+                        newAnswers[question.id] = e.target.value;
+                        setAnswers(newAnswers);
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
